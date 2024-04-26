@@ -1,11 +1,9 @@
 package org.example.sala.models
 
-import org.example.butacas.factories.ButacasFactory
 import org.example.productos.models.butacas.models.Butaca
 import org.example.productos.models.butacas.models.Estado
 import org.example.productos.models.butacas.models.Ocupacion
 import org.example.productos.models.butacas.models.Tipo
-
 
 private const val TAM_FILAS = 5
 private const val TAM_COLUMNAS = 7
@@ -23,13 +21,24 @@ private const val TAM_COLUMNAS = 7
 class Sala {
     private val sala: Array<Array<Any?>> = Array(TAM_FILAS) { arrayOfNulls(TAM_COLUMNAS) }
 
+    /**
+     * Inicializa la sala con butacas aleatorias.
+     *
+     * @return La matriz que representa la disposición de las butacas en la sala.
+     */
     fun inicializarSala() : Array<Array<Any?>>{
         repeat(35){
-            posicionAleatoria(ButacasFactory.butacaRandom)
+            posicionAleatoria(Butaca())
         }
         return sala
     }
 
+    /**
+     * Coloca un elemento en una posición aleatoria de la sala.
+     *
+     * @param item Elemento a colocar en la sala.
+     * @return La matriz que representa la disposición de las butacas en la sala después de colocar el elemento.
+     */
     fun posicionAleatoria(item: Any?) : Array<Array<Any?>> {
         var columna : Int
         var fila : Int
@@ -43,6 +52,8 @@ class Sala {
 
     /**
      * Imprime la disposición de las butacas en la sala.
+     *
+     * @return La matriz que representa la disposición de las butacas en la sala.
      */
     fun imprimirSala() : Array<Array<Any?>> {
         for (fila in sala.indices) {
