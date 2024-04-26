@@ -6,44 +6,30 @@ import java.util.*
 import kotlin.io.path.Path
 
 /**
- * Objeto singleton que maneja la configuración de la aplicación.
- *
- * Esta clase carga la configuración desde un archivo properties y proporciona acceso a las diferentes propiedades de configuración.
- *
- * @author Natalia Gonzalez
- * @since 1.0
+ * @author Alba Garcia
  */
 private val logger = logging()
-
+/**
+ * Objeto singleton que almacena la configuración de la aplicación.
+ */
 object Config {
-
-    /**
-     * URL de la base de datos.
-     */
+    /** URL de la base de datos */
     var databaseUrl: String = "jdbc:sqlite:cine.db"
         private set
 
-    /**
-     * Indica si se deben inicializar las tablas de la base de datos al inicio.
-     */
+    /** Indica si se deben inicializar las tablas de la base de datos al iniciar la aplicación */
     var databaseInitTables: Boolean = false
         private set
 
-    /**
-     * Indica si se debe inicializar los datos de la base de datos al inicio.
-     */
+    /** Indica si se deben inicializar los datos de la base de datos al iniciar la aplicación */
     var databaseInitData: Boolean = false
         private set
 
-    /**
-     * Directorio de almacenamiento de datos.
-     */
+    /** Ruta donde se almacenan los datos */
     var storageData: String = "database/data"
         private set
 
-    /**
-     * Tamaño de la caché.
-     */
+    /** Tamaño máximo de la caché */
     var cacheSize: Int = 10
         private set
 
