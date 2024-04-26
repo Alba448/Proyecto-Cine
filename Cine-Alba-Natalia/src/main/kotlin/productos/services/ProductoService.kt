@@ -12,6 +12,7 @@ import org.example.productos.models.complementos.errors.ComplementoError
 import org.example.productos.models.complementos.models.Bebida
 import org.example.productos.models.complementos.models.Comida
 import org.example.productos.models.complementos.models.Complemento
+import java.io.File
 
 /**
  * Servicio para gestionar productos, butacas y complementos.
@@ -96,4 +97,9 @@ interface ProductoService {
      * Elimina un producto.
      */
     fun delete(id: Long): Result<Producto, ProductoError>
+
+    /**
+     * Importa los complementos de un fichero csv.
+     */
+    fun import(csvFile: File):Result<Unit, ComplementoError>
 }
