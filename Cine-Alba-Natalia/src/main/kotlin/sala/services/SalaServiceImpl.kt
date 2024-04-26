@@ -5,9 +5,12 @@ import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import org.example.productos.models.butacas.errors.ButacaError
 import org.example.productos.models.butacas.models.Butaca
+import org.example.productos.models.butacas.repositories.ButacaRepository
 import org.example.productos.models.butacas.repositories.ButacaRepositoryImpl
+import org.example.productos.services.ProductoService
 import org.example.sala.models.Sala
 import org.lighthousegames.logging.logging
+import java.io.File
 
 private val logger = logging()
 
@@ -25,14 +28,15 @@ private val logger = logging()
  */
 class SalaServiceImpl(
     private val sala: Sala = Sala(),
-    private val butacaRepositoryImpl: ButacaRepositoryImpl,
+    private val butacaRepository: ButacaRepository,
+    private val productoService: ProductoService
 ) : SalaService {
 
     /**
      * Permite al usuario comprar una entrada para una butaca.
      */
     override fun comprarEntrada(): Result<Butaca, ButacaError> {
-        return butacaRepositoryImpl.reservarButaca(butaca = Butaca())
+        return butacaRepository.reservarButaca(butaca = Butaca())
             ?.let { Ok(it) }
             ?: Err(ButacaError.ButacaNoReservada("Butaca no reservada con id: ${Butaca().id}"))
     }
@@ -41,7 +45,7 @@ class SalaServiceImpl(
      * Permite al usuario devolver una entrada previamente comprada.
      */
     override fun devolverEntrada(): Result<Butaca, ButacaError> {
-        return butacaRepositoryImpl.devolverButaca(butaca = Butaca())
+        return butacaRepository.devolverButaca(butaca = Butaca())
             ?.let { Ok(it) }
             ?: Err(ButacaError.ButacaNoReservada("Butaca no devuelta con id: ${Butaca().id}"))
     }
@@ -65,6 +69,8 @@ class SalaServiceImpl(
      * Importa complementos o configuraciones adicionales para la sala de cine.
      */
     override fun importarComplementos() {
+        val csvFile = File("data", "complementos.csv")
+        productoService.import(csvFile)
     }
 
     /**
