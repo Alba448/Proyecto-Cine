@@ -2,7 +2,7 @@
  * @author Alba Garcia
  */
  -- Tabla de Complementos
-  CREATE TABLE IF NOT EXISTS Complemento (
+  CREATE TABLE IF NOT EXISTS ComplementoEntity (
         id INTEGER PRIMARY KEY,
         bebida TEXT,
         comida TEXT ,
@@ -15,28 +15,28 @@
 
   -- Operaciones CRUD para la tabla de Complemento
   removeAllComplemento:
-  DELETE FROM Complemento;
+  DELETE FROM ComplementoEntity;
 
   selectAllComplemento:
-  SELECT * FROM Complemento;
+  SELECT * FROM ComplementoEntity;
 
   selectComplementoById:
-  SELECT * FROM Complemento WHERE id = ?;
+  SELECT * FROM ComplementoEntity WHERE id = ?;
 
   selectAllComplementoByIsDeleted:
-  SELECT * FROM Complemento WHERE is_deleted = ?;
+  SELECT * FROM ComplementoEntity WHERE is_deleted = ?;
 
   selectComplementoLastInserted:
-  SELECT * FROM Complemento WHERE id = last_insert_rowid();
+  SELECT * FROM ComplementoEntity WHERE id = last_insert_rowid();
 
   insertComplemento:
-  INSERT INTO Complemento (bebida, comida,otros, stock, created_at, updated_at) VALUES (  ?, ?, ?, ?, ?, ?);
+  INSERT INTO ComplementoEntity (bebida, comida,otros, stock, created_at, updated_at) VALUES (  ?, ?, ?, ?, ?, ?);
 
   updateComplemento:
-  UPDATE Complemento SET bebida = ?, comida = ?, otros = ?, stock= ?,   updated_at = ?, is_deleted = ? WHERE id = ?;
+  UPDATE ComplementoEntity SET bebida = ?, comida = ?, otros = ?, stock= ?,   updated_at = ?, is_deleted = ? WHERE id = ?;
 
   deleteComplemento:
-  DELETE FROM Complemento WHERE id = ?;
+  DELETE FROM ComplementoEntity WHERE id = ?;
 
 
  -- Tabla de Butaca
