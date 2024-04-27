@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS LineaVentaEntity (
      id TEXT PRIMARY KEY,
      venta_id TEXT NOT NULL REFERENCES VentaEntity(id),
     butaca_id TEXT NOT NULL REFERENCES ButacaEntity(id),
-    complemento_id INTEGER NOT NULL REFERENCES Complemento(id),
+    complemento_id INTEGER NOT NULL REFERENCES ComplementoEntity(id),
      cantidad INTEGER NOT NULL,
      precio REAL NOT NULL,
      created_at TEXT NOT NULL,
